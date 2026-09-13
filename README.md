@@ -57,7 +57,10 @@ pki/
 │   └── servers/
 │
 ├── hybrid-pki/
+│   ├── hybrid_pki_setup.py
 │   ├── policy.py
+│   ├── start_server.py
+│   ├── tls_server.py
 │   ├── rootCA/
 │   ├── intermediateCA1/
 │   ├── intermediateCA2/
@@ -65,8 +68,6 @@ pki/
 │
 ├── .gitignore
 └── README.md
-
-The directory structure will evolve as the hybrid post-quantum implementation is added.
 
 ## Python Automation
 
