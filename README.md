@@ -42,26 +42,6 @@ Intermediate CAs issue end-entity certificates so that the Root CA does not need
 
 The generated server certificate can then be deployed to either the Python TLS server or Nginx.
 
-## Current Features
-
-The current implementation includes:
-
-- Root CA creation
-- Two Intermediate CAs
-- CA private-key generation
-- Server private-key generation
-- Certificate Signing Request (CSR) generation
-- Intermediate CA certificate issuance
-- Server certificate issuance
-- X.509 certificate extensions
-- Certificate-chain construction
-- Certificate-chain verification
-- Python automation of OpenSSL operations
-- Python TLS server
-- Nginx HTTPS configuration
-- Deployment of PKI-issued certificates to Nginx
-- TLS handshake testing using `openssl s_client`
-
 ## Repository Structure
 
 ```text
@@ -76,9 +56,15 @@ pki/
 │   ├── intermediateCA2/
 │   └── servers/
 │
+├── hybrid-pki/
+│   ├── policy.py
+│   ├── rootCA/
+│   ├── intermediateCA1/
+│   ├── intermediateCA2/
+│   └── servers/
+│
 ├── .gitignore
 └── README.md
-```
 
 The directory structure will evolve as the hybrid post-quantum implementation is added.
 
@@ -306,27 +292,6 @@ Host: localhost
 
 Nginx then returns an HTTP response through the TLS connection.
 
-## Classical PKI to Hybrid Post-Quantum PKI
-
-The next phase of this project will extend the existing PKI toward a hybrid post-quantum architecture.
-
-The existing PKI provides a baseline for studying how a traditional certificate infrastructure can be migrated to support post-quantum cryptography.
-
-Planned work includes:
-
-- ML-DSA key generation
-- Post-quantum CA certificates
-- Post-quantum server certificates
-- Classical and post-quantum certificate-chain experiments
-- Hybrid certificate and PKI architectures
-- Hybrid TLS configuration
-- Certificate-size comparison
-- TLS handshake testing
-- Performance benchmarking
-- Investigation of PKI migration strategies
-
-The goal is to compare the classical implementation with its post-quantum or hybrid counterpart and study the practical impact of introducing post-quantum cryptography into a PKI.
-
 ## Security
 
 **Private keys must never be committed to this repository.**
@@ -374,8 +339,11 @@ and verify that no Root CA, Intermediate CA, or server private keys are staged f
 - Post-Quantum Cryptography
 - ML-DSA
 
+
 ## Project Status
 
-**Current phase:** Classical PKI, Python TLS server, and Nginx TLS deployment operational.
+**Completed phases:** Classical PKI and post-quantum PKI automation, including certificate generation, Python TLS server integration, and Nginx TLS deployment.
 
-**Next phase:** Extend the PKI to a hybrid post-quantum architecture and evaluate post-quantum certificates and TLS deployment.
+**Current phase:** Crypto-agile PKI automation. Cryptographic algorithms and parameters can be selected through a configurable policy, supporting algorithms such as RSA, ECDSA, and ML-DSA without changing the core PKI automation logic.
+
+**Next phase:** Extend the crypto-agile PKI to a hybrid architecture that combines classical and post-quantum cryptographic mechanisms, followed by hybrid TLS integration and testing.
