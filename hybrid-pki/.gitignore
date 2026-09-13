@@ -1,0 +1,14 @@
+# Private keys
+*.key
+*.pem
+
+# OpenSSL CA database/state
+index.txt
+index.txt.*
+serial
+serial.old
+*.srl
+
+# Python
+__pycache__/
+*.pyc

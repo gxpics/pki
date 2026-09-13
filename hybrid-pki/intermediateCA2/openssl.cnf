@@ -1,0 +1,46 @@
+
+[ ca ]
+default_ca = CA_default
+
+[ CA_default ]
+dir               = /home/gxpics/pki/hybrid-pki/intermediateCA2
+certs             = $dir/certs
+crl_dir           = $dir/crl
+new_certs_dir     = $dir/newcerts
+database          = $dir/index.txt
+serial            = $dir/serial
+private_key       = $dir/private/intermediateCA2.key
+certificate       = $dir/certs/intermediateCA2.crt
+
+
+default_days      = 1825
+policy            = policy_loose
+copy_extensions   = copy
+
+[ policy_loose ]
+countryName             = optional
+stateOrProvinceName     = optional
+localityName            = optional
+organizationName        = optional
+organizationalUnitName  = optional
+commonName              = supplied
+emailAddress            = optional
+
+[ req ]
+prompt             = no
+distinguished_name = req_distinguished_name
+
+[ req_distinguished_name ]
+C  = US
+ST = New York
+L  = Rochester
+O  = PQ PKI Lab
+OU = Intermediate CA
+CN = intermediateCA2
+
+[ server_cert ]
+basicConstraints       = critical, CA:false
+subjectKeyIdentifier   = hash
+authorityKeyIdentifier = keyid,issuer
+keyUsage               = critical, digitalSignature
+extendedKeyUsage       = serverAuth
