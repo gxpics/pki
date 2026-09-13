@@ -6,7 +6,7 @@ from pathlib import Path
 import subprocess
 import shutil
 
-BASE_DIR = Path.home()/"pq-pki"
+BASE_DIR = Path.home() /"pki" / "pq-pki"
 root_dir = BASE_DIR / "rootCA"
 intermediate1_dir = BASE_DIR / "intermediateCA1"
 intermediate2_dir = BASE_DIR / "intermediateCA2"
@@ -223,6 +223,13 @@ def create_root_certificate(root_dir):
     run_command(command)
 
 def generate_intermediate_csr(ca_dir, ca_name):
+    csr_path = ca_dir / "csr" / f"{ca_name}.csr"
+
+    if csr_path.exists():
+        print(f"CSR already exists: {csr_path}")
+        print("Skipping CSR generation.")
+        return
+
     command = [
         "openssl",
         "req",

@@ -1,7 +1,21 @@
 from pathlib import Path
 import subprocess
 import shutil
-from pq_pki_setup import  run_command, BASE_DIR, root_dir, intermediate1_dir, intermediate2_dir
+from pq_pki_setup import  run_command, generate_mldsa_key, BASE_DIR, root_dir, intermediate1_dir, intermediate2_dir
+
+def create_server_dir(server1_dir):
+    directories = [
+        "certs",
+        "csr",
+        "private"
+    ]
+
+    for directory in directories:
+        (server1_dir / directory).mkdir(
+            parents=True,
+            exist_ok=True
+        )
+
 
 def generate_server_csr(server_dir, server_name):
     command = [
@@ -24,6 +38,13 @@ def sign_server(
     server_dir,
     server_name
 ):
+    cert_path = server_dir / "certs" / f"{server_name}.crt"
+
+    if cert_path.exists():
+        print(f"Certificate already exists: {cert_path}")
+        print("Skipping server certificate signing.")
+        return
+
     command = [
         "openssl",
         "ca",
@@ -214,18 +235,19 @@ def reload_nginx():
 
 def main():
     server1_dir = BASE_DIR / "servers" / "server1"
-    server_key = server1_dir / "private" / "server1.key"
+    server1_key = server1_dir / "private" / "server1.key"
+    
+    create_server_dir(server1_dir)
+    generate_mldsa_key(server1_key)
+    generate_server_csr(server1_dir, "server1")
+    sign_server(intermediate1_dir, server1_dir, "server1")
+    verify_server(root_dir, intermediate1_dir, server1_dir, "server1")
 
-    #generate_mldsa_key(server_key)
-    #generate_server_csr(server1_dir, "server1")
-    #sign_server(intermediate1_dir, server1_dir, "server1")
-    #verify_server(root_dir, intermediate1_dir, server1_dir, "server1")
-
-    #create_server_chain(server1_dir, intermediate1_dir, "server1", "intermediateCA1")
-    #install_nginx_certificate(server1_dir, "server1")
+    create_server_chain(server1_dir, intermediate1_dir, "server1", "intermediateCA1")
+    install_nginx_certificate(server1_dir, "server1")
     #generate_nginx_config("server1")
     #enable_nginx_site("server1")
-    #test_nginx()
+    test_nginx()
     reload_nginx()
 
 
