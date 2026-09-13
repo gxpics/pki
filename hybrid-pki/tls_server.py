@@ -7,8 +7,8 @@ PORT = 8443
 context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
 
 context.load_cert_chain(
-    certfile="servers/server1/server1-fullchain.crt",
-    keyfile="servers/server1/server1.key"
+    certfile="servers/server1/certs/server1-chain.crt",
+    keyfile="servers/server1/private/server1.key"
 )
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
