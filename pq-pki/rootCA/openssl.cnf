@@ -3,7 +3,7 @@
 default_ca = CA_default
 
 [ CA_default ]
-dir               = /home/gxpics/pq-pki/rootCA
+dir               = /home/gxpics/pki/pq-pki/rootCA
 certs             = $dir/certs
 crl_dir           = $dir/crl
 new_certs_dir     = $dir/newcerts
@@ -12,7 +12,7 @@ serial            = $dir/serial
 private_key       = $dir/private/rootCA.key
 certificate       = $dir/certs/rootCA.crt
 
-default_md        = default
+
 default_days      = 3650
 policy            = policy_loose
 copy_extensions   = copy
@@ -29,14 +29,15 @@ emailAddress            = optional
 [ req ]
 prompt             = no
 distinguished_name = req_distinguished_name
+x509_extensions = v3_root_ca
 
 [ req_distinguished_name ]
 C  = US
 ST = New York
 L  = Rochester
-O  = PQ PKI Lab
+O  = PKI Lab
 OU = Root CA
-CN = PQ Root CA
+CN = Hybrid Root CA
 
 [ v3_root_ca ]
 subjectKeyIdentifier   = hash

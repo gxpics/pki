@@ -3,17 +3,17 @@
 default_ca = CA_default
 
 [ CA_default ]
-dir               = /home/gxpics/pki/pq-pki/intermediateCA2
+dir               = /home/gxpics/pki/classical-pki/rootCA
 certs             = $dir/certs
 crl_dir           = $dir/crl
 new_certs_dir     = $dir/newcerts
 database          = $dir/index.txt
 serial            = $dir/serial
-private_key       = $dir/private/intermediateCA2.key
-certificate       = $dir/certs/intermediateCA2.crt
+private_key       = $dir/private/rootCA.key
+certificate       = $dir/certs/rootCA.crt
 
-
-default_days      = 1825
+default_md = sha256
+default_days      = 3650
 policy            = policy_loose
 copy_extensions   = copy
 
@@ -29,18 +29,24 @@ emailAddress            = optional
 [ req ]
 prompt             = no
 distinguished_name = req_distinguished_name
+x509_extensions = v3_root_ca
 
 [ req_distinguished_name ]
 C  = US
 ST = New York
 L  = Rochester
 O  = PKI Lab
-OU = Intermediate CA
-CN = intermediateCA2
+OU = Root CA
+CN = Hybrid Root CA
 
-[ server_cert ]
-basicConstraints       = critical, CA:false
+[ v3_root_ca ]
 subjectKeyIdentifier   = hash
-authorityKeyIdentifier = keyid,issuer
-keyUsage               = critical, digitalSignature
-extendedKeyUsage       = serverAuth
+authorityKeyIdentifier = keyid:always,issuer
+basicConstraints       = critical, CA:true
+keyUsage               = critical, digitalSignature, keyCertSign, cRLSign
+
+[ v3_intermediate_ca ]
+subjectKeyIdentifier   = hash
+authorityKeyIdentifier = keyid:always,issuer
+basicConstraints       = critical, CA:true, pathlen:0
+keyUsage               = critical, digitalSignature, keyCertSign, cRLSign

@@ -3,7 +3,7 @@
 default_ca = CA_default
 
 [ CA_default ]
-dir               = /home/gxpics/pki/pq-pki/intermediateCA2
+dir               = /home/gxpics/pki/classical-pki/intermediateCA2
 certs             = $dir/certs
 crl_dir           = $dir/crl
 new_certs_dir     = $dir/newcerts
@@ -12,7 +12,7 @@ serial            = $dir/serial
 private_key       = $dir/private/intermediateCA2.key
 certificate       = $dir/certs/intermediateCA2.crt
 
-
+default_md = sha384
 default_days      = 1825
 policy            = policy_loose
 copy_extensions   = copy

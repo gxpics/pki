@@ -1,0 +1,55 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 4096 (0x1000)
+        Signature Algorithm: ecdsa-with-SHA384
+        Issuer: C=US, ST=New York, L=Rochester, O=PQ PKI Lab, OU=Intermediate CA, CN=intermediateCA2
+        Validity
+            Not Before: Sep 15 01:13:22 2026 GMT
+            Not After : Sep 15 01:13:22 2027 GMT
+        Subject: C=US, ST=New York, L=Rochester, O=Hybrid PKI Lab, CN=server2
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:cc:12:f1:e5:93:3a:f1:b4:e3:8f:b1:54:e7:0b:
+                    2f:58:7f:50:08:4e:2a:6e:12:a0:cb:67:b6:cb:ba:
+                    d1:2f:5e:3c:e7:eb:62:84:d1:a0:aa:b1:70:f7:a7:
+                    95:60:2b:04:f2:a7:c4:38:e2:90:93:9c:12:29:0f:
+                    ad:e0:fd:74:d0
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Subject Key Identifier: 
+                A3:87:37:41:A9:FE:9B:1A:71:9A:0F:28:92:E0:5B:D9:96:A1:74:63
+            X509v3 Authority Key Identifier: 
+                BC:40:32:3D:9A:B2:5D:E2:85:44:1E:6E:8A:92:E8:39:DC:1F:A5:F4
+            X509v3 Key Usage: critical
+                Digital Signature
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+    Signature Algorithm: ecdsa-with-SHA384
+    Signature Value:
+        30:65:02:30:67:b4:58:e0:79:ef:f7:2c:38:5d:49:4e:a9:d0:
+        7e:36:1e:7d:1f:28:bd:25:2b:25:07:c1:4e:59:08:f5:83:a8:
+        a7:04:9d:7b:0f:87:7c:9b:28:53:1f:2d:ea:30:2e:d9:02:31:
+        00:f9:b6:fa:61:8a:bb:77:90:07:df:55:d2:11:55:54:7b:2d:
+        4f:4e:31:6e:17:1f:4a:07:3d:7d:c8:93:29:28:7d:bb:8b:95:
+        2a:d2:9e:f1:73:85:74:a6:1a:25:35:ae:4d
+-----BEGIN CERTIFICATE-----
+MIICYTCCAeegAwIBAgICEAAwCgYIKoZIzj0EAwMwfTELMAkGA1UEBhMCVVMxETAP
+BgNVBAgMCE5ldyBZb3JrMRIwEAYDVQQHDAlSb2NoZXN0ZXIxEzARBgNVBAoMClBR
+IFBLSSBMYWIxGDAWBgNVBAsMD0ludGVybWVkaWF0ZSBDQTEYMBYGA1UEAwwPaW50
+ZXJtZWRpYXRlQ0EyMB4XDTI2MDkxNTAxMTMyMloXDTI3MDkxNTAxMTMyMlowXzEL
+MAkGA1UEBhMCVVMxETAPBgNVBAgMCE5ldyBZb3JrMRIwEAYDVQQHDAlSb2NoZXN0
+ZXIxFzAVBgNVBAoMDkh5YnJpZCBQS0kgTGFiMRAwDgYDVQQDDAdzZXJ2ZXIyMFkw
+EwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEzBLx5ZM68bTjj7FU5wsvWH9QCE4qbhKg
+y2e2y7rRL1485+tihNGgqrFw96eVYCsE8qfEOOKQk5wSKQ+t4P100KN1MHMwDAYD
+VR0TAQH/BAIwADAdBgNVHQ4EFgQUo4c3Qan+mxpxmg8okuBb2ZahdGMwHwYDVR0j
+BBgwFoAUvEAyPZqyXeKFRB5uipLoOdwfpfQwDgYDVR0PAQH/BAQDAgeAMBMGA1Ud
+JQQMMAoGCCsGAQUFBwMBMAoGCCqGSM49BAMDA2gAMGUCMGe0WOB57/csOF1JTqnQ
+fjYefR8ovSUrJQfBTlkI9YOopwSdew+HfJsoUx8t6jAu2QIxAPm2+mGKu3eQB99V
+0hFVVHstT04xbhcfSgc9fciTKSh9u4uVKtKe8XOFdKYaJTWuTQ==
+-----END CERTIFICATE-----
