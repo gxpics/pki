@@ -84,5 +84,3 @@ Implemented:
 ## Future Work
 
 A **composite certificate** approach has not yet been implemented.
-
-Future work may extend the project so that classical and post-quantum cryptographic components are represented within a single composite certificate rather than using two separate certificates.
