@@ -84,3 +84,8 @@ Implemented:
 ## Future Work
 
 A **composite certificate** approach has not yet been implemented.
+
+## Requirements
+
+- Python 3
+- OpenSSL with post-quantum algorithm support
