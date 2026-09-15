@@ -1,0 +1,54 @@
+# ==========================================
+# Hybrid PKI - .gitignore
+# ==========================================
+
+# Private keys
+*.key
+*.pem
+
+# Certificates
+*.crt
+*.cer
+*.cert
+
+# Certificate Signing Requests
+*.csr
+
+# Certificate chains
+*.chain
+*.chain.pem
+
+# CA database files
+index.txt
+index.txt.*
+serial
+serial.*
+crlnumber
+crlnumber.*
+
+# Certificate Revocation Lists
+*.crl
+
+# OpenSSL generated certificate database
+newcerts/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Python virtual environments
+.venv/
+venv/
+
+# IDE / editor files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary / backup files
+*.tmp
+*.bak
+*~
