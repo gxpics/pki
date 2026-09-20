@@ -10,8 +10,18 @@ from policy import PKI_POLICY, SUPPORTED_ALGORITHMS
 PKCS11_MODULE = "/usr/lib/x86_64-linux-gnu/softhsm/libsofthsm2.so"
 TOKEN_LABEL = "session2-rsa-key"
 
-BASE_DIR = Path.home() / "pki" / "classical-pki"
-# BASE_DIR = Path.home() / "pki" / "pq-pki"
+ROOT_KEY_ID = "01"
+INTERMEDIATE1_KEY_ID = "02"
+INTERMEDIATE2_KEY_ID = "03"
+SERVER1_KEY_ID = "04"
+
+ROOT_KEY_LABEL = "rootCA-key"
+INTERMEDIATE1_KEY_LABEL = "intermediateCA1-key"
+INTERMEDIATE2_KEY_LABEL = "intermediateCA2-key"
+SERVER1_KEY_LABEL = "server1-key"
+
+BASE_DIR = Path.home() / "pki" / "hsm-pki" / "classical-pki"
+# BASE_DIR = Path.home() / "pki" / "hsm-pki" / "pq-pki"
 
 root_dir = BASE_DIR /"rootCA"
 intermediate1_dir = BASE_DIR / "intermediateCA1"
@@ -266,30 +276,32 @@ def generate_hsm_key(key_label, key_id):
     )
 
 
+def get_hsm_key_uri(key_label):
+    return f"pkcs11:object={key_label};type=private"
+
 def create_root_certificate(root_dir):
+
     cert_path = root_dir / "certs" / "rootCA.crt"
 
     if cert_path.exists():
-        print(f"Root certificate already exists: {cert_path}")
-        print("Skipping root certificate generation.")
+        print(f"{cert_path} already exists. Skipping.")
         return
 
+    root_key_uri = get_hsm_key_uri(ROOT_KEY_LABEL)
+
     command = [
-        "openssl",
-        "req",
+        "openssl", "req",
         "-new",
         "-x509",
-        "-key",
-        root_dir / "private" / "rootCA.key",
-        "-out",
-        cert_path,
-        "-config",
-        root_dir / "openssl.cnf",
-        "-extensions",
-        "v3_root_ca"
+        "-key", root_key_uri,
+        "-config", str(root_dir / "openssl.cnf"),
+        "-extensions", "v3_root_ca",
+        "-days", "3650",
+        "-out", str(cert_path)
     ]
 
     run_command(command)
+
 
 def generate_intermediate_csr(ca_dir, ca_name):
     csr_path = ca_dir / "csr" / f"{ca_name}.csr"
@@ -367,10 +379,10 @@ def setup(mode = "classical"):
     root_policy = SUPPORTED_ALGORITHMS[PKI_POLICY[mode]["root"]]
 
     list_hsm_objects()
-    generate_hsm_key("rootCA-key", "01") #generate_key(root_key, root_policy["algorithm"], root_policy["options"])
+    generate_hsm_key("rootCA-key", ROOT_KEY_ID) #generate_key(root_key, root_policy["algorithm"], root_policy["options"])
     
-    #generate_root_config(root_dir, root_policy["digest"])
-    #create_root_certificate(root_dir)
+    generate_root_config(root_dir, root_policy["digest"])
+    create_root_certificate(root_dir)
 
     #intermediate1_key = intermediate1_dir / "private" / "intermediateCA1.key"
     #intermediate1_policy = SUPPORTED_ALGORITHMS[PKI_POLICY[mode]["intermediate"]]
