@@ -16,11 +16,19 @@ hybrid-pki/
 │   ├── intermediateCA2/
 │   └── servers/
 │
-└── pq-pki/
-    ├── rootCA/
-    ├── intermediateCA1/
-    ├── intermediateCA2/
-    └── servers/
+├── pq-pki/
+│   ├── rootCA/
+│   ├── intermediateCA1/
+│   ├── intermediateCA2/
+│   └── servers/
+│
+└── hsm-pki/
+    ├── hsm_pki_setup.py
+    └── classical-pki/
+        ├── rootCA/
+        ├── intermediateCA1/
+        ├── intermediateCA2/
+        └── servers/
 ```
 
 Each logical entity therefore has two cryptographic identities:
@@ -81,9 +89,11 @@ Implemented:
 - Certificate-chain verification
 - Crypto-agile algorithm selection
 
-## Future Work
 
-A **composite certificate** approach has not yet been implemented.
+## Work in Progress / Future Work
+
+1. Integrating with an HSM (Hardware Security Module).
+2. A composite certificate approach has not yet been implemented.
 
 ## Requirements
 
